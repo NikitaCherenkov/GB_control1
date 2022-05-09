@@ -2,7 +2,32 @@
 
 Console.WriteLine("Введите элементы массива, разделив их пробелом");
 string InitString = Console.ReadLine();
-string[] array = InitString.Split(" ");
-for (int i = 0; i < array.Length; i++) {
-    Console.WriteLine($"{array.Length} {array[i]}");
+string[] InitArray;
+if (InitString.Contains(" ")) {
+    InitArray = InitString.Split(" ");
+} else {
+    InitArray = new string[] { InitString };
+}
+int StringsCount = 0;
+for (int i = 0; i < InitArray.Length; i++) {
+    if (InitArray[i].Length <= 3) StringsCount++;
+}
+string[] ResultArray = new string[StringsCount];
+int CurrentElement = 0;
+for (int m = 0; m < InitArray.Length; m++) {
+    if (InitArray[m].Length <= 3) {
+        ResultArray[CurrentElement] = InitArray[m];
+        CurrentElement++;
+    }
+}
+Console.WriteLine($"{PrintArray(InitArray)} -> {PrintArray(ResultArray)}");
+
+string PrintArray(string[] array) {
+    string arr = "[";
+    for (int i = 0; i < array.Length; i++) {
+        arr += "\"" + array[i] + "\"";
+        if (i < array.Length - 1) arr += ", ";
+    }
+    arr += "]";
+    return arr;
 }
