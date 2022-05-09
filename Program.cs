@@ -25,8 +25,10 @@ Console.WriteLine($"{PrintArray(InitArray)} -> {PrintArray(ResultArray)}");
 string PrintArray(string[] array) {
     string arr = "[";
     for (int i = 0; i < array.Length; i++) {
-        arr += "\"" + array[i] + "\"";
-        if (i < array.Length - 1) arr += ", ";
+        if (array[i].Length > 0) {
+            arr += "\"" + array[i] + "\"";
+            if (i < array.Length - 1) arr += ", ";
+        }
     }
     arr += "]";
     return arr;
